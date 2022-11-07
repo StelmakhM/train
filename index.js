@@ -1,23 +1,21 @@
-const rectangle = document.querySelector('.field');
-const p = document.querySelector('.coords');
-const normal = document.querySelector('.normal');
-const trottled = document.querySelector('.throttled');
-let counterNormal = 0;
-let counterTrottled = 0;
+import countries from "./countries.js";
+
+
+const inputField = document.querySelector('.search');
+const countryContainer = document.querySelector('.country-list');
+createMarkUp(countries);
+inputField.addEventListener('input', _.debounce(inputHandler, 300))
 
 
 
-rectangle.addEventListener('mousemove', mouseHandler);
-rectangle.addEventListener('mousemove', _.throttle(slowedMouseHandler, 300));
-
-function mouseHandler(e) {
-    const coordinats = `X: ${e.offsetX}, Y: ${e.offsetY}`;
-    p.textContent = coordinats;
-    counterNormal += 1;
-    normal.textContent = counterNormal;
+function createMarkUp(countries) {
+    const markUp = countries.map(country => `<li>${country}</li>`).join('');
+    countryContainer.innerHTML = markUp
 }
 
-function slowedMouseHandler() {
-    counterTrottled += 1;
-    trottled.textContent = counterTrottled;
+function inputHandler(event) {
+    const eventValue = event.target.value.toLowerCase();
+    const filteredCountries = countries.filter(country => country.toLowerCase().includes(eventValue));
+    createMarkUp(filteredCountries);
+    console.log(`counter`)
 }
