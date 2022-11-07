@@ -1,0 +1,20 @@
+html,
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 20px;
+    margin: 0;
+}
+
+.field {
+    height: 180px;
+    width: 400px;
+    padding: 50px;
+    text-align: center;
+    font-size: 80px;
+    border: 1px solid black;
+}
